@@ -31,11 +31,11 @@ const makeGalleryMarkup = gallery.map((item, index) => {
 });
 
 function openModal(event) {
+  const target = event.target;
   event.preventDefault();
   if (event.target.nodeName === 'IMG') {
     lightBoxRef.classList.add('is-open');
-    lightBoxContentRef.dataset.index = event.target.dataset.index;
-    const target = event.target;
+    lightBoxContentRef.dataset.index = target.dataset.index;
     lightBoxContentRef.src = target.dataset.source;
     lightBoxContentRef.alt = target.alt;
   }
