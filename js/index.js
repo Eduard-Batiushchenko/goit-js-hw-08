@@ -34,14 +34,12 @@ function openModal(event) {
   const target = event.target;
   event.preventDefault();
   if (event.target.nodeName === 'IMG') {
+    window.addEventListener('keydown', onPressEsc);
+    window.addEventListener('keydown', onPressArr);
     lightBoxRef.classList.add('is-open');
     lightBoxContentRef.dataset.index = target.dataset.index;
     lightBoxContentRef.src = target.dataset.source;
     lightBoxContentRef.alt = target.alt;
-  }
-  if (lightBoxRef.classList.contains('is-open')) {
-    window.addEventListener('keydown', onPressEsc);
-    window.addEventListener('keydown', onPressArr);
   }
 }
 
@@ -51,13 +49,13 @@ function closeModal() {
     lightBoxContentRef.src = '';
     lightBoxContentRef.alt = '';
     window.removeEventListener('keydown', onPressArr);
+    window.removeEventListener('keydown', onPressEsc);
   }
 }
 
 function onPressEsc(event) {
   if (event.code === 'Escape') {
     closeModal();
-    window.removeEventListener('keydown', onPressEsc);
   }
 }
 
